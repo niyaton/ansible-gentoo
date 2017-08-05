@@ -32,11 +32,11 @@ force_format
 
 mirror
     The mirror to fetch the gentoo stage3 sources from.  
-    default: http://mirror.mcs.anl.gov/pub/gentoo 
+    default: http://ftp.jaist.ac.jp/pub/Linux/Gentoo
 
 timezone
     The timezone to set for the new system.  
-    default: America/Los_Angeles
+    default: Japan
 
 domain
     main domain for the new system  
