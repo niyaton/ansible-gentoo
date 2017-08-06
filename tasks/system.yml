@@ -8,7 +8,7 @@
     - name: cronie
       creates: /mnt/gentoo/etc/init.d/cronie
     - name: grub
-      creates: /mnt/gentoo/usr/sbin/grub2-install
+      creates: /mnt/gentoo/usr/sbin/grub-install
 
 - name: Add syslog-ng to Default Run Configuration
   command: chroot /mnt/gentoo bash -c 'rc-update add syslog-ng default'
@@ -23,10 +23,10 @@
   copy: src=grub_default dest=/mnt/gentoo/etc/default/grub mode=0644 owner=root group=root
 
 - name: Install Grub to Boot Drive
-  command: chroot /mnt/gentoo bash -c 'source /etc/profile; grub2-install /dev/sda'
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; grub-install /dev/sda'
 
 - name: Configure Grub Make Config
-  command: chroot /mnt/gentoo bash -c 'source /etc/profile; grub2-mkconfig -o /boot/grub/grub.cfg'
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; grub-mkconfig -o /boot/grub/grub.cfg'
 
 - name: Set Root Password
   command: chroot /mnt/gentoo bash -c 'source /etc/profile; echo "root:{{ root_passwd }}" | /usr/sbin/chpasswd'
