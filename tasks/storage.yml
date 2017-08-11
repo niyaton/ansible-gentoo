@@ -36,20 +36,48 @@
   tags:
     - storage
 
-- name: Create Root Mount
-  command: "{{item}} creates=/tmp/gentoo_mounted"
-  with_items:
-      - mkdir -p /mnt/gentoo
-      - mount {{ main_disk }}3 /mnt/gentoo
-      - touch /tmp/gentoo_mounted
+- name: Create Root Mount Directory
+  file: path=/mnt/gentoo state=directory
   tags:
     - storage
 
-- name: Create Boot Mount
-  command: "{{item}} creates=/tmp/boot_mounted"
-  with_items: 
-      - mkdir -p /mnt/gentoo/boot
-      - mount {{ main_disk }}1 /mnt/gentoo/boot
-      - touch /tmp/boot_mounted
+- name: Mount Root Directory
+  mount:
+    name: /mnt/gentoo
+    src: "{{ main_disk }}3"
+    fstype: "{{ fstype }}"
+    state: present
   tags:
     - storage
+
+- name: Create Boot Mount Directory
+  file: path=/mnt/gentoo/boot state=directory
+  tags:
+    - storage
+
+- name: Mount Boot Directory
+  mount:
+    name: /mnt/gentoo
+    src: "{{ main_disk }}1"
+    fstype: ext4
+    state: present
+  tags:
+    - storage
+
+    #- name: Create Root Mount
+    #  command: "{{item}} creates=/tmp/gentoo_mounted"
+    #  with_items:
+    #      - mkdir -p /mnt/gentoo
+    #      - mount {{ main_disk }}3 /mnt/gentoo
+    #      - touch /tmp/gentoo_mounted
+    #  tags:
+    #    - storage
+    #
+    #- name: Create Boot Mount
+    #  command: "{{item}} creates=/tmp/boot_mounted"
+    #  with_items: 
+    #      - mkdir -p /mnt/gentoo/boot
+    #      - mount {{ main_disk }}1 /mnt/gentoo/boot
+    #      - touch /tmp/boot_mounted
+    #  tags:
+    #    - storage
