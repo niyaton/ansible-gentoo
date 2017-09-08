@@ -46,12 +46,7 @@
     name: /mnt/gentoo
     src: "{{ main_disk }}3"
     fstype: "{{ fstype }}"
-    state: present
-  tags:
-    - storage
-
-- name: Create Boot Mount Directory
-  file: path=/mnt/gentoo/boot state=directory
+    state: mounted
   tags:
     - storage
 
@@ -60,7 +55,7 @@
     name: /mnt/gentoo
     src: "{{ main_disk }}1"
     fstype: ext4
-    state: present
+    state: mounted
   tags:
     - storage
 
