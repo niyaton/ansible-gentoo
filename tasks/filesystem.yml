@@ -64,6 +64,6 @@
   template: src=fstab dest=/mnt/gentoo/etc/fstab mode=644
 
 - name: Create Make.conf
-  copy: src=make.conf dest=/mnt/gentoo/etc/portage/make.conf
+  template: src=make.conf dest=/mnt/gentoo/etc/portage/make.conf mode=644
 
 - command: touch /tmp/filesystem_completed
