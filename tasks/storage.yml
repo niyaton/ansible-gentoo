@@ -17,9 +17,10 @@
   command: "sgdisk {{ main_disk }} {{ item }}"
   when: sgdisk_is_done.stat.exists == False
   with_items:
-    - -n 1:0:+128M -t 1:ef02 -c 1:bios-boot
-    - -n 2:0:+8G   -t 1:8200 -c 1:swap
-    - -n 3:0:0     -t 1:8300 -c 1:linux-root
+    - -n 1:0:+128M -t 1:8300 -c 1:linux-boot
+    - -n 2:0:+32M  -t 2:ef02 -c 2:bios-boot
+    - -n 3:0:+8G   -t 3:8200 -c 3:swap
+    - -n 4:0:0     -t 4:8300 -c 4:linux-root
 
 - command: touch /tmp/sgdisk_is_done
 
@@ -29,10 +30,10 @@
     - storage
 
 - name: Format Swap Partition
-  command: mkswap {{ main_disk }}2
+  command: mkswap {{ main_disk }}3
 
 - name: Format Root Partition
-  filesystem: "fstype={{ fstype }} dev={{ main_disk }}3 force={{ force_format }}"
+  filesystem: "fstype={{ fstype }} dev={{ main_disk }}4 force={{ force_format }}"
   tags:
     - storage
 
@@ -44,7 +45,7 @@
 - name: Mount Root Directory
   mount:
     name: /mnt/gentoo
-    src: "{{ main_disk }}3"
+    src: "{{ main_disk }}4"
     fstype: "{{ fstype }}"
     state: mounted
   tags:
