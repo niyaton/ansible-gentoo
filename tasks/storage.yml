@@ -59,21 +59,3 @@
     state: mounted
   tags:
     - storage
-
-    #- name: Create Root Mount
-    #  command: "{{item}} creates=/tmp/gentoo_mounted"
-    #  with_items:
-    #      - mkdir -p /mnt/gentoo
-    #      - mount {{ main_disk }}3 /mnt/gentoo
-    #      - touch /tmp/gentoo_mounted
-    #  tags:
-    #    - storage
-    #
-    #- name: Create Boot Mount
-    #  command: "{{item}} creates=/tmp/boot_mounted"
-    #  with_items: 
-    #      - mkdir -p /mnt/gentoo/boot
-    #      - mount {{ main_disk }}1 /mnt/gentoo/boot
-    #      - touch /tmp/boot_mounted
-    #  tags:
-    #    - storage
