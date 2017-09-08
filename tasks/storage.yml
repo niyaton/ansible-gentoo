@@ -52,7 +52,7 @@
 
 - name: Mount Boot Directory
   mount:
-    name: /mnt/gentoo
+    name: /mnt/gentoo/boot
     src: "{{ main_disk }}1"
     fstype: ext4
     state: mounted
