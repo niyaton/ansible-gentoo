@@ -12,6 +12,7 @@
   when: filesystem_completed.stat.exists == False
 
 - include: kernel.yml
+- include: systemd.yml
 - include: networking.yml
 - include: system.yml
 - include: packages.yml

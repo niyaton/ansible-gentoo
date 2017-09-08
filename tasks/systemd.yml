@@ -1,0 +1,19 @@
+- name: Change profile
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; eselect profile set 10'
+
+- name: cleanup unused packages
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge -C sys-apps/sysvinit sys-apps/openrc'
+
+- name: set USE flags for systemd
+  lineinfile:
+    dest: /mnt/gentoo/etc/portage/package.use/systemd
+    line: "sys-apps/systemd importd curl lzma gcrypt sysv-utils"
+
+- name: Install systemd
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge -avDN @world'
+  args:
+    creates: /mnt/gentoo/usr/bin/systemctl
+
+- name: cleanup unused packages
+  command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge --depclean'
+
