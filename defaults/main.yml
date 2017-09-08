@@ -10,6 +10,7 @@ timezone: Japan
 domain: met.tfoundry.com
 kernel: config-3.13.0-24-generic
 make_opts: -j4
+load_average: -l3
 management_interface: "{{ ansible_default_ipv4.interface }}"
 root_passwd: gentoo-root
 gateway: "{{ ansible_default_ipv4.gateway }}"
