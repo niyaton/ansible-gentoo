@@ -60,8 +60,8 @@
   template: src=hostname dest=/mnt/gentoo/etc/conf.d/hostname
 
 
-- name: Configure Fstab
-  copy: src=fstab dest=/mnt/gentoo/etc/fstab
+- name: Configure fstab
+  template: src=fstab dest=/mnt/gentoo/etc/fstab mode=644
 
 - name: Create Make.conf
   copy: src=make.conf dest=/mnt/gentoo/etc/portage/make.conf
