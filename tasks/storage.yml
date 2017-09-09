@@ -15,7 +15,10 @@
 - command: touch /tmp/sgdisk_is_done
 
 - name: Format BIOS Partition
-  filesystem: "fstype=ext4 dev={{ main_disk }}1 force={{ force_format }}"
+  filesystem:
+    fstype: ext4
+    dev: "{{ main_disk }}1"
+    force: "{{ force_format }}"
   tags:
     - storage
 
@@ -23,7 +26,10 @@
   command: mkswap {{ main_disk }}3
 
 - name: Format Root Partition
-  filesystem: "fstype={{ fstype }} dev={{ main_disk }}4 force={{ force_format }}"
+  filesystem:
+    fstype: "{{ fstype }}"
+    dev: "{{ main_disk }}4"
+    force: "{{ force_format }}"
   tags:
     - storage
 
