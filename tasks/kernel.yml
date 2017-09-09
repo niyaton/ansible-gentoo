@@ -32,9 +32,3 @@
   command: chroot /mnt/gentoo/ bash -c 'source /etc/profile; cd /usr/src/linux; make install'
   tags:
     - kernel
-
-- name: Install Genkernel
-  command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge genkernel' creates=/mnt/gentoo/usr/bin/genkernel
-
-- name: Install Initramfs
-  command: chroot /mnt/gentoo bash -c 'source /etc/profile; genkernel --lvm --install initramfs'
