@@ -7,7 +7,7 @@
 - name: set USE flags for systemd
   lineinfile:
     dest: /mnt/gentoo/etc/portage/package.use/systemd
-    line: "sys-apps/systemd importd curl lzma gcrypt sysv-utils"
+    line: "sys-apps/systemd importd curl lzma gcrypt"
 
 - name: Install systemd
   command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge -avDN @world'
