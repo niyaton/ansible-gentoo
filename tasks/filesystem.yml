@@ -59,7 +59,6 @@
 - name: Set Hostname
   template: src=hostname dest=/mnt/gentoo/etc/conf.d/hostname
 
-
 - name: Configure fstab
   template: src=fstab dest=/mnt/gentoo/etc/fstab mode=644
 
