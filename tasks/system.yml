@@ -1,3 +1,13 @@
+- name: Add MAKEOPTS options to make.conf
+  lineinfile:
+    dest: /mnt/gentoo/etc/portage/make.conf
+    line: "MAKEOPTS=\"{{ make_opts }} {{ load_average }}\""
+
+- name: Add EMERGE_DEFAULT_OPTS to make.conf
+  lineinfile:
+    dest: /mnt/gentoo/etc/portage/make.conf
+    line: "EMERGE_DEFAULT_OPTS=\"{{ make_opts }} --quiet-build=y\""
+
 - name: Install System Packages
   command: chroot /mnt/gentoo bash -c 'source /etc/profile; emerge {{ item.name }}' creates={{ item.creates }}
   with_items:
