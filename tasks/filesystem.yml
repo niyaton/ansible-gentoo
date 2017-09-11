@@ -20,7 +20,7 @@
     - filesystem
 
 - name: dev bind mounts
-  command: mount --rbind /dev /mnt/gentoo/dev creates=/mnt/gentoo/dev/zero
+  command: mount --rbind /dev /mnt/gentoo/dev
   tags:
     - filesystem
 

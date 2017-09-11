@@ -25,6 +25,9 @@
 - name: Format Swap Partition
   command: mkswap {{ main_disk }}3
 
+- name: Mount Swap Partition
+  command: swapon {{ main_disk }}3
+
 - name: Format Root Partition
   filesystem:
     fstype: "{{ fstype }}"
