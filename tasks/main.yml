@@ -15,5 +15,4 @@
 - include: systemd.yml
 - include: networking.yml
 - include: system.yml
-- include: packages.yml
 - include: reboot.yml
