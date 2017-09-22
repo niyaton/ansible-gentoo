@@ -3,16 +3,16 @@
 - name: Deploy User's Authorized Key to Root
   authorized_key: user=root key="{{ lookup('file', pubkey) }}"
 
-- include: storage.yml
+- import_tasks: storage.yml
 
 - stat: path=/tmp/filesystem_completed
   register: filesystem_completed
 
-- include: filesystem.yml
+- import_tasks: filesystem.yml
   when: filesystem_completed.stat.exists == False
 
-- include: kernel.yml
-- include: systemd.yml
-- include: networking.yml
-- include: system.yml
-- include: reboot.yml
+- import_tasks: kernel.yml
+- import_tasks: systemd.yml
+- import_tasks: networking.yml
+- import_tasks: system.yml
+- import_tasks: reboot.yml
